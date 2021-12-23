@@ -23,6 +23,7 @@ class PurchaseFactory extends Factory
     {
         return [
             'price' => 0,
+            'payed' => rand(0, 1),
         ];
     }
 }
