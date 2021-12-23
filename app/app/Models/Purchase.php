@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\PurchaseHasItem;
 use App\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Purchase extends Model
 {
+    use HasFactory;
     /**
      * The "type" of the auto-incrementing ID.
      *
@@ -35,7 +37,7 @@ class Purchase extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     /**
@@ -43,6 +45,6 @@ class Purchase extends Model
      */
     public function purchaseHasItems()
     {
-        return $this->hasMany('App\PurchaseHasItem');
+        return $this->hasMany('App\Models\PurchaseHasItems');
     }
 }
