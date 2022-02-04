@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\PurchaseHasItem;
-use App\User;
+use App\Models\PurchaseHasItems;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  * @property User $user
- * @property PurchaseHasItem[] $purchaseHasItems
+ * @property PurchaseHasItems[] $purchaseHasItems
  */
 class Purchase extends Model
 {
