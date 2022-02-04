@@ -25,4 +25,16 @@ body {
 .nav-item .disabled {
     color: rgba(255, 255, 255, 0.3) !important;
 }
-
+.btn-cart {
+    color: white;
+    background-color: #0a53be;
+    font-weight: bold;
+    display: block;
+    margin: auto !important;
+}
+.btn-cart:hover {
+    background-color: #ff0000;
+}
+.number-input {
+    height: 38px;
+}

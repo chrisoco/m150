@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\PurchaseHasItem;
+use App\Models\PurchaseHasItems;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $img
  * @property string $created_at
  * @property string $updated_at
- * @property PurchaseHasItem[] $purchaseHasItems
+ * @property PurchaseHasItems[] $purchaseHasItems
  */
 class Item extends Model
 {
@@ -38,4 +38,9 @@ class Item extends Model
     {
         return $this->hasMany('App\Models\PurchaseHasItem');
     }
+
+    public function getPriceConvertedAttribute() {
+        return number_format($this->price, 2) .'.- CHF';
+    }
+
 }
