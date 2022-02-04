@@ -4,6 +4,9 @@ body {
     background-color: #eee;
     -webkit-print-color-adjust: exact;
 }
+#app {
+    padding-bottom: 3.5rem;
+}
 .footer {
     position: fixed;
     bottom: 0;
