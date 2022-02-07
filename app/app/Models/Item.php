@@ -40,7 +40,7 @@ class Item extends Model
     }
 
     public function getPriceConvertedAttribute() {
-        return number_format($this->price, 2) .'.- CHF';
+        return number_format($this->price, 2) .' CHF';
     }
 
 }
