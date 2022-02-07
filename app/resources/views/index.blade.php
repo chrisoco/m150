@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('cart')
     <div class="container">
-        <h1 class="my-4 text-center">WELCOME!</h1>
+        <h1 class="my-4 text-center">WELCOME! {{ print_r(session('c')) }}</h1>
 
         <div class="d-flex flex-wrap justify-content-start">
 
