@@ -43,13 +43,34 @@ class ShopController extends Controller
         // TODO: Implement Cart (Session-based CBA)
         // TODO: Add to Cart
 
+        $item = Item::find($data['itemID']);
+
         $arr = session('c');
-        $arr[$data['itemID']] = $data['amount'];
+
+        if(array_key_exists($data['itemID'], $arr)) {
+            if($data['amount'] + $arr[$data['itemID']] <= $item->quantity_available) {
+                $arr[$data['itemID']] = $data['amount'] + $arr[$data['itemID']];
+            }
+        } else {
+            if($data['amount'] <= $item->quantity_available) {
+                $arr[$data['itemID']] = $data['amount'];
+            }
+        }
 
         session(['c' => $arr]);
 
         return redirect(route('index'));
 
+    }
+
+    public function delItemFromCart($id)
+    {
+        $arr = session('c');
+        unset($arr[$id]);
+
+        session(['c' => $arr]);
+
+        return redirect(route('index'));
     }
 
 }
