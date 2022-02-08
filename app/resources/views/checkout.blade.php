@@ -22,7 +22,7 @@
                     </li>
                 @auth
                     <li class="list-group-item list-group-item-action mb-1">
-                        <a href="{{ route('pay') }}" class="btn d-block btn-success"><i class="fas fa-cart-arrow-down"></i> Check-Out</a>
+                        <a href="{{ route('buy') }}" class="btn d-block btn-success"><i class="fas fa-cart-arrow-down"></i> Check-Out</a>
                     </li>
                 @endauth
 

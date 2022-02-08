@@ -23,6 +23,6 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/checkout', [App\Http\Controllers\ShopController::class, 'checkout'])->name('checkout');
-    Route::get('/pay', [App\Http\Controllers\ShopController::class, 'pay'])->name('pay');
+    Route::get('/buy', [App\Http\Controllers\ShopController::class, 'buy'])->name('buy');
 
 });
