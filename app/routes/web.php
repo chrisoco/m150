@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])->name('index');
 Route::post('/addItemToCart', [App\Http\Controllers\ShopController::class, 'addItemToCart'])->name('addItemToCart');
+Route::get('/delItemFromCart/{id}', [App\Http\Controllers\ShopController::class, 'delItemFromCart'])->name('delItemFromCart');
+
+
 
 Auth::routes();
 
