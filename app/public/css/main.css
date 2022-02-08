@@ -38,12 +38,24 @@ body {
 .number-input {
     height: 38px;
 }
-.cart {
-    width: 300px;
-    height: 700px;
-    background-color: #0a53be;
+.sidepanel {
+    width: 350px;
     position: fixed;
-    top: 170px;
+    top: 162px;
     right: 20px;
-    border: 2px solid black;
+    z-index: 99;
+}
+.cart {
+    min-height: 405px;
+    background-color: #00b3ff;
+    box-shadow: 5px 5px 10px #4a6fff;
+    border-radius: 5px;
+}
+
+.login {
+    background: lightgray;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    box-shadow: 5px 5px 10px #4a6fff;
+    border-radius: 5px;
 }
