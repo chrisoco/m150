@@ -37,12 +37,12 @@
                         <i class="fas fa-users-cog"></i><span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu mt-md-2" aria-labelledby="dropdown04">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <!-- <li><a class="dropdown-item" href="#">Action</a></li> -->
 
                         <li>
-                            <form id="logout-form" action="http://localhost/santisquiz-p/public/logout" method="POST">
-                                <input type="hidden" name="_token" value="GLXqrpP83jQCZUuHmIFAuWHBtb2FzhUaUsEmLBX8">
-                                <input type="submit" class="dropdown-item" value="Logout">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <input type="submit" class="dropdown-item" value="{{ __('Logout') }}">
                             </form>
                         </li>
                     </ul>
