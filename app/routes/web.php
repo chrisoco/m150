@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])->name('index');
-Route::post('/addItemToCart', [App\Http\Controllers\ShopController::class, 'addItemToCart'])->name('addItemToCart');
-Route::get('/delItemFromCart/{id}', [App\Http\Controllers\ShopController::class, 'delItemFromCart'])->name('delItemFromCart');
-
-
+Route::get ('/',                     [App\Http\Controllers\ShopController::class, 'index']          )->name('index');
+Route::post('/addItemToCart',        [App\Http\Controllers\ShopController::class, 'addItemToCart']  )->name('addItemToCart');
+Route::get ('/delItemFromCart/{id}', [App\Http\Controllers\ShopController::class, 'delItemFromCart'])->name('delItemFromCart');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('/checkout', [App\Http\Controllers\ShopController::class, 'checkout'])->name('checkout');
+    Route::get('/pay', [App\Http\Controllers\ShopController::class, 'pay'])->name('pay');
+
+});

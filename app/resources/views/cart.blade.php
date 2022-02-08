@@ -1,5 +1,5 @@
 <div class="cart">
-
+    @if(session('c') != null && count(session('c')) > 0)
     <h3 class="text-center">CART</h3>
     <ul id="cart-items" class="list-group">
         @foreach(session('c') as $key => $value)
@@ -11,9 +11,13 @@
             </li>
         @endforeach
 
-        <li class="list-group-item list-group-item-action mb-1">
-            <a href="" class="btn d-block btn-success"><i class="fas fa-cart-arrow-down"></i> Check-Out</a>
-        </li>
+        @auth
+            <li class="list-group-item list-group-item-action mb-1">
+                <a href="{{ route('checkout') }}" class="btn d-block btn-success"><i class="fas fa-cart-arrow-down"></i> Check-Out</a>
+            </li>
+        @endauth
     </ul>
-
+    @else
+        <h3 class="text-center">Cart is Empty...</h3>
+    @endif
 </div>

@@ -41,7 +41,7 @@ class ShopController extends Controller
 
         // TODO: Validate quantity avlb.??? on checkout maybe?
         // TODO: Implement Cart (Session-based CBA)
-        // TODO: Add to Cart
+        // TODO: Add to Cart: Done
 
         $item = Item::find($data['itemID']);
 
@@ -71,6 +71,28 @@ class ShopController extends Controller
         session(['c' => $arr]);
 
         return redirect(route('index'));
+    }
+
+    public function checkout()
+    {
+
+        // CalcPriceTotal
+        $total = 0;
+        if(session('c') != null && count(session('c')) > 0) {
+            foreach (session('c') as $key => $value) {
+                $total += Item::find($key)->calcPrice($value);
+            }
+        }
+
+        return view('checkout', [
+            'items' => Item::all(),
+            'total' => $total,
+        ]);
+    }
+
+    public function pay()
+    {
+
     }
 
 }

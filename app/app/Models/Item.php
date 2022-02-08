@@ -43,4 +43,14 @@ class Item extends Model
         return number_format($this->price, 2) .' CHF';
     }
 
+    public function calcPrice($val)
+    {
+        return $this->price * $val;
+    }
+
+    public function calcPriceFormatted($val)
+    {
+        return number_format($this->calcPrice($val), 2) .' CHF';
+    }
+
 }
