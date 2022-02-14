@@ -8,6 +8,7 @@
         <div class="d-flex flex-wrap justify-content-start">
 
             @foreach($items as $item)
+                @if($item->quantity_available > 0)
                 <div class="p-2 px-4 col-md-4">
                     <div class="card d-inline-block m-0 w-100" style="box-shadow: 5px 5px 10px #4a6fff">
                         <div class="card-header">
@@ -28,6 +29,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             @endforeach
 
         </div>
