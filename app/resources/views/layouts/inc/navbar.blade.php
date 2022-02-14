@@ -8,37 +8,23 @@
         <div class="navbar-collapse collapse" id="navbarsExample04">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    <a class="nav-link" href="{{ route('checkout') }}">Cart</a>
                 </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">
 
+                @auth
                 <li class="nav-item mx-5">
-                    <span class="nav-link">:)</span>
+                    <span class="nav-link">{{ auth()->user()->email }}</span>
                 </li>
+                @endauth
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-users-cog"></i><span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu mt-md-2" aria-labelledby="dropdown04">
-                        <!-- <li><a class="dropdown-item" href="#">Action</a></li> -->
-
                         <li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
