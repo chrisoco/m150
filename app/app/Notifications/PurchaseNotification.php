@@ -44,7 +44,7 @@ class PurchaseNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->markdown('vendor.notifications.email', ['purchase' => $this->purchase]);
+            ->markdown('vendor.notifications.purchase', ['purchase' => $this->purchase]);
     }
 
     /**
