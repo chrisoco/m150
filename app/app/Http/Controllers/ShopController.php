@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Purchase;
 use App\Models\PurchaseHasItems;
+use App\Notifications\PurchaseNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -129,6 +130,8 @@ class ShopController extends Controller
                 'price'   => $total,
                 'payed'   => '1',
             ]);
+
+            auth()->user()->notify(new PurchaseNotification($newPurchase));
 
         }
 
