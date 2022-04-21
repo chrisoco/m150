@@ -1,33 +1,62 @@
 @component('mail::message')
+{{-- Greeting --}}
+@if (! empty($greeting))
+# {{ $greeting }}
+@else
+@if ($level === 'error')
+# @lang('Whoops!')
+@else
+# @lang('Hello!')
+@endif
+@endif
 
+{{-- Intro Lines --}}
+@foreach ($introLines as $line)
+{{ $line }}
 
-Dear Mr./Ms. {{ $purchase->user->name }}
+@endforeach
 
-Thank you for your purchase. Your Order is shown below:
+{{-- Action Button --}}
+@isset($actionText)
+<?php
+    switch ($level) {
+        case 'success':
+        case 'error':
+            $color = $level;
+            break;
+        default:
+            $color = 'primary';
+    }
+?>
+@component('mail::button', ['url' => $actionUrl, 'color' => $color])
+{{ $actionText }}
+@endcomponent
+@endisset
 
+{{-- Outro Lines --}}
+@foreach ($outroLines as $line)
+{{ $line }}
 
-<table style="width: 100%">
-    <tr>
-        <th>IMG</th>
-        <th>Name</th>
-        <th>Quantity</th>
-        <th>Single Price</th>
-    </tr>
-    @foreach($purchase->purchaseHasItems as $hasItem)
-        <tr>
-            <td style="text-align: center"><img src="{{ url('/img/'.$hasItem->item->img) }}" class="mx-auto d-block" style="max-width: 100px"></td>
-            <td style="text-align: center">{{ $hasItem->item->name }}</td>
-            <td style="text-align: center">{{ $hasItem->quantity }}x</td>
-            <td style="text-align: center">{{ $hasItem->item->price }}</td>
-        </tr>
-    @endforeach
-</table>
-<br><br>
-<div><b>Total: <span style="text-decoration-line: underline; text-decoration-style: double;">{{ $purchase->price }} CHF</span></b></div>
+@endforeach
 
-
-<br><br>
-We look forward to your next visit,<br>
+{{-- Salutation --}}
+@if (! empty($salutation))
+{{ $salutation }}
+@else
+@lang('Regards'),<br>
 {{ config('app.name') }}
+@endif
 
+{{-- Subcopy --}}
+@isset($actionText)
+@slot('subcopy')
+@lang(
+    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
+    'into your web browser:',
+    [
+        'actionText' => $actionText,
+    ]
+) <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
+@endslot
+@endisset
 @endcomponent
