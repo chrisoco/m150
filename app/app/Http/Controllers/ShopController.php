@@ -91,17 +91,21 @@ class ShopController extends Controller
     public function buy()
     {
 
+        $failed = [];
+
         if(session('c') != null && count(session('c')) > 0) {
 
             foreach (session('c') as $key => $value) {
-                Item::find($key)->buy($value);
+                if(!Item::find($key)->buy($value)) {
+                    $failed[] = Item::find($key);
+                }
             }
 
         }
 
         session()->forget('c');
 
-        return view('buy');
+        return view('buy', ['failed' => $failed]);
     }
 
 }
