@@ -20,9 +20,18 @@ Route::get ('/delItemFromCart/{id}', [App\Http\Controllers\ShopController::class
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth', 'verified']], function() {
 
     Route::get('/checkout', [App\Http\Controllers\ShopController::class, 'checkout'])->name('checkout');
     Route::get('/buy', [App\Http\Controllers\ShopController::class, 'buy'])->name('buy');
 
 });
+
+
+/**
+ * Verification Routes
+ */
+Route::get('/email/verify', 'VerificationController@show')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
+Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
+
