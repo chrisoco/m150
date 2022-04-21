@@ -53,15 +53,16 @@ class Item extends Model
         return number_format($this->calcPrice($val), 2) .' CHF';
     }
 
-    public function buy($val)
+    public function buy($val): bool
     {
 
         if($this->quantity_available >= $val) {
             $this->update([
                 'quantity_available' => $this->quantity_available -= $val,
             ]);
+            return true;
         }
-
+        return false;
     }
 
 }

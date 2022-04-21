@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Purchase;
+use App\Models\PurchaseHasItems;
+use App\Notifications\PurchaseNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -91,17 +94,50 @@ class ShopController extends Controller
     public function buy()
     {
 
+        $failed = [];
+
         if(session('c') != null && count(session('c')) > 0) {
 
+            $newPurchase = Purchase::create([
+                'price'   => '0',
+                'payed'   => '0',
+                'user_id' => auth()->id(),
+            ]);
+
+            // CalcPriceTotal
+            $total = 0;
             foreach (session('c') as $key => $value) {
-                Item::find($key)->buy($value);
+
+                $item = Item::find($key);
+
+                if(Item::find($key)->buy($value)) {
+
+                    $total += $item->calcPrice($value);
+
+                    PurchaseHasItems::create([
+                        'purchase_id' => $newPurchase->id,
+                        'item_id' => $item->id,
+                        'quantity' => $value,
+                    ]);
+
+                } else {
+                    $failed[] = Item::find($key);
+                }
+
             }
+
+            $newPurchase->update([
+                'price'   => $total,
+                'payed'   => '1',
+            ]);
+
+            auth()->user()->notify(new PurchaseNotification($newPurchase));
 
         }
 
         session()->forget('c');
 
-        return view('buy');
+        return view('buy', ['failed' => $failed]);
     }
 
 }
