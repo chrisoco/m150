@@ -2,10 +2,10 @@
 ### Christopher O'Connor
 
 ## Ausgangssituation
-Bei der Applikation handelt es sich um einen einfachen Webshop. Dieser soll nach Wunsch erweitert werden, sodass künftig bei einem neuen Kauf der Kunde eine E-Mail mit der Kaufbestätigung erhält.
+Bei der Applikation handelt es sich um einen einfachen Webshop. Dieser soll nach Wunsch erweitert werden, sodass künftig bei einem neuen Kauf die Kunden eine E-Mail mit der Kaufbestätigung erhalten.
 
 ## Docs
-- [**Dokumentation.pdf**](M150_OConnor_Dokumentation_2022_04_28.pdf)
+- [**Dokumentation.pdf**](M150_OConnor_Dokumentation_2022_04_27.pdf)
 
 ## Installation
 
